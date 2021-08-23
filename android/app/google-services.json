@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "927644172137",
+    "project_id": "matematikajago-35827",
+    "storage_bucket": "matematikajago-35827.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:927644172137:android:a95f700b2e7673a71307f8",
+        "android_client_info": {
+          "package_name": "com.matgo.matematikajago"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "927644172137-l66m6fb5t7h20spq4pqd577lv8n5snvd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.matgo.matematikajago",
+            "certificate_hash": "8eee4efb5c88592ad751fdace712c8453068d6c2"
+          }
+        },
+        {
+          "client_id": "927644172137-cov3mpvdql4jhvj6l2ro0aidbn4dlfbh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoyY0BMF4sblKL65o6eN_DTwiEAXf48Kw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "927644172137-cov3mpvdql4jhvj6l2ro0aidbn4dlfbh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

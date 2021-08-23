@@ -1,0 +1,22 @@
+name: quiz_app
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 0.0.0+1
+
+environment:
+  sdk: ">=2.13.4 <3.0.0"
+
+dependencies:
+  firebase_core: ^1.5.0
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+
+  uses-material-design: true
