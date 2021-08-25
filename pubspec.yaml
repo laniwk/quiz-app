@@ -1,5 +1,5 @@
 name: quiz_app
-description: A new Flutter project.
+description: Matematika Jago quiz app
 
 publish_to: 'none'
 
@@ -9,14 +9,37 @@ environment:
   sdk: ">=2.13.4 <3.0.0"
 
 dependencies:
+  cached_network_image: ^3.1.0
+  cloud_firestore: ^2.5.0
   firebase_core: ^1.5.0
   flutter:
     sdk: flutter
+  get_it: ^7.2.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  lint: ^1.6.0
 
 flutter:
 
   uses-material-design: true
+
+  assets:
+    - assets/images/
+
+  fonts:
+  - family: Quicksand
+    fonts:
+      - asset: assets/fonts/Quicksand-Regular.ttf
+      - asset: assets/fonts/Quicksand-Medium.ttf
+        weight: 500
+      - asset: assets/fonts/Quicksand-SemiBold.ttf
+        weight: 600
+      - asset: assets/fonts/Quicksand-Bold.ttf
+        weight: 700
+  - family: Caveat
+    fonts:
+      - asset: assets/fonts/Caveat-Regular.ttf
+      - asset: assets/fonts/Caveat-Bold.ttf
+        weight: 700

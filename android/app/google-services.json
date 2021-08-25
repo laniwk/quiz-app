@@ -7,6 +7,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:927644172137:android:f5c451c8c44b78c41307f8",
+        "android_client_info": {
+          "package_name": "app.lanisia.quiz_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "927644172137-cov3mpvdql4jhvj6l2ro0aidbn4dlfbh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoyY0BMF4sblKL65o6eN_DTwiEAXf48Kw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "927644172137-cov3mpvdql4jhvj6l2ro0aidbn4dlfbh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:927644172137:android:a95f700b2e7673a71307f8",
         "android_client_info": {
           "package_name": "com.matgo.matematikajago"

@@ -2,6 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'core/constants/route_names.dart';
+import 'core/helpers/screen_router.dart';
+import 'singletons.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -10,6 +14,8 @@ Future<void> main() async {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
   ));
+
+  initSingletons();
 
   runApp(const App());
 }
@@ -20,9 +26,14 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Matematika Jago',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.pink,
+        appBarTheme: Theme.of(context).appBarTheme.copyWith(brightness: Brightness.dark),
+        fontFamily: 'Quicksand',
       ),
+      initialRoute: RouteNames.home,
+      onGenerateRoute: ScreenRouter.onGenerateRoute,
     );
   }
 }
