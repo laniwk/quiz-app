@@ -73,14 +73,15 @@ class _QuestionsScreenState extends State<QuestionsScreen> with ScreenUtils<Ques
   }
 
   void _onNextTapped() {
-    if (_questionTileIndex.value.currentIndex == _questions.length - 1) {
+    final currentIndex = _questionTileIndex.value.currentIndex;
+    if (currentIndex == _questions.length - 1) {
       return;
     }
     _questionTilePageController.nextPage(
       duration: const Duration(milliseconds: 500),
       curve: Curves.fastLinearToSlowEaseIn,
     );
-    if (!_timer.isActive && !_questionsStateNotifier.state.value.hasCompletedQuestions) {
+    if (!_timer.isActive && _userAnswers[currentIndex + 1].isEmpty) {
       _resetDuration();
     }
   }
