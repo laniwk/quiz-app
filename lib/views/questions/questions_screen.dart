@@ -193,13 +193,13 @@ class _QuestionsScreenState extends State<QuestionsScreen> with ScreenUtils<Ques
           backgroundColor: Colors.white,
           centerTitle: true,
           elevation: 0,
-          // leading: IconButton(
-          //   onPressed: Navigator.of(context).pop,
-          //   icon: const Icon(
-          //     Icons.arrow_back_ios_new,
-          //     color: Colors.pinkAccent,
-          //   ),
-          // ),
+          leading: IconButton(
+            onPressed: Navigator.of(context).pop,
+            icon: const Icon(
+              Icons.arrow_back_ios_new,
+              color: Colors.pinkAccent,
+            ),
+          ),
           title: ValueListenableBuilder<Duration>(
             valueListenable: _timerState,
             builder: (context, currentDuration, child) {
@@ -211,7 +211,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> with ScreenUtils<Ques
               }
               final currentMinute = currentDuration.inMinutes.remainder(60);
               final currentSecond = currentDuration.inSeconds.remainder(60).toString().padLeft(2, '0');
-    
+
               return Text(
                 '$currentMinute:$currentSecond',
                 style: const TextStyle(color: Colors.pinkAccent),
@@ -229,9 +229,9 @@ class _QuestionsScreenState extends State<QuestionsScreen> with ScreenUtils<Ques
             if (state.isLoading) {
               return child!;
             }
-    
+
             return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20),
+              padding: const EdgeInsets.only(bottom: 20),
               child: PageView.builder(
                 controller: _questionTilePageController,
                 physics: const NeverScrollableScrollPhysics(),
@@ -328,7 +328,7 @@ class _QuestionTileNavigator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -419,38 +419,27 @@ class _QuestionTile extends StatelessWidget {
           style: const TextStyle(fontWeight: FontWeight.bold),
         );
       }
-      final Widget choiceTile;
-      if (currentAnswer.isNotEmpty) {
-        final Widget trailing;
-        if ((currentAnswer == 'X' || currentAnswer == currentChoice.id) && currentChoice.id != question.answer) {
-          trailing = const Icon(
-            Icons.close,
-            color: Colors.red,
-          );
-        } else if (currentChoice.id == question.answer) {
-          trailing = Icon(
-            Icons.done,
-            color: Colors.greenAccent[400],
-          );
-        } else {
-          trailing = const SizedBox(width: 24);
-        }
-        choiceTile = ListTile(
-          contentPadding: EdgeInsets.zero,
-          title: title,
-          trailing: trailing,
+      final Widget trailing;
+      if (currentAnswer.isNotEmpty &&
+          (currentAnswer == 'X' || currentAnswer == currentChoice.id) &&
+          currentChoice.id != question.answer) {
+        trailing = const Icon(
+          Icons.close,
+          color: Colors.red,
+        );
+      } else if (currentAnswer.isNotEmpty && currentChoice.id == question.answer) {
+        trailing = Icon(
+          Icons.done,
+          color: Colors.greenAccent[400],
         );
       } else {
-        choiceTile = RadioListTile<String>(
-          contentPadding: EdgeInsets.zero,
-          groupValue: currentAnswer,
-          value: currentChoice.id,
-          onChanged: (newAnswer) {
-            onAnswerTapped(currentChoice.id);
-          },
-          title: title,
-        );
+        trailing = const SizedBox(width: 24);
       }
+      final choiceTile = ListTile(
+        title: title,
+        trailing: trailing,
+        onTap: currentAnswer.isEmpty ? () => onAnswerTapped(currentChoice.id) : null,
+      );
       choices.add(choiceTile);
     }
     return choices;
@@ -459,17 +448,22 @@ class _QuestionTile extends StatelessWidget {
   List<Widget> get _explanationImage {
     return [
       const Divider(color: Colors.grey),
-      const Text(
-        'Pembahasan',
-        style: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
+      const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16),
+        child: Text(
+          'Pembahasan',
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
       const SizedBox(height: 10),
-      Align(
+      Container(
         alignment: Alignment.centerLeft,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: CachedNetworkImage(
+          alignment: Alignment.centerLeft,
           imageUrl: question.explanation,
         ),
       ),
@@ -478,22 +472,27 @@ class _QuestionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.only(bottom: 56),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Pertanyaan',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Text(
+              'Pertanyaan',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           const SizedBox(height: 10),
-          Align(
+          Container(
             alignment: Alignment.centerLeft,
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: CachedNetworkImage(
+              alignment: Alignment.centerLeft,
               imageUrl: question.text,
             ),
           ),

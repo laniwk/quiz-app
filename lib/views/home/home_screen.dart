@@ -18,60 +18,61 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       extendBodyBehindAppBar: true,
-      body: Center(
-        child: Container(
-          height: MediaQuery.of(context).size.height * 0.40,
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const CircleAvatar(
-                radius: 80,
-                child: CircleAvatar(
-                  radius: 78,
-                  backgroundColor: Colors.white,
-                  child: Text(
-                    'MAGO',
-                    style: TextStyle(
-                      fontFamily: 'Caveat',
-                      fontSize: 45,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              const Text(
-                'Matematika Jago',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.pinkAccent,
-                  fontFamily: 'Caveat',
-                  fontSize: 35,
-                ),
-              ),
-              const Spacer(),
-              ElevatedButton(
-                onPressed: _onStartTapped,
-                style: ElevatedButton.styleFrom(
-                  elevation: 0,
-                  primary: Colors.pinkAccent,
-                  shadowColor: Colors.transparent,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(16)),
-                  ),
-                  minimumSize: Size(MediaQuery.of(context).size.width - 40, 50),
-                ),
-                child: const Text(
-                  'START',
+      body: SingleChildScrollView(
+        padding: EdgeInsets.fromLTRB(
+          20,
+          MediaQuery.of(context).size.height * 0.25 + kToolbarHeight,
+          20,
+          20,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const CircleAvatar(
+              radius: 80,
+              child: CircleAvatar(
+                radius: 78,
+                backgroundColor: Colors.white,
+                child: Text(
+                  'MAGO',
                   style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Caveat',
+                    fontSize: 45,
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 5),
+            const Text(
+              'Matematika Jago',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.pinkAccent,
+                fontFamily: 'Caveat',
+                fontSize: 35,
+              ),
+            ),
+            const SizedBox(height: 40),
+            ElevatedButton(
+              onPressed: _onStartTapped,
+              style: ElevatedButton.styleFrom(
+                elevation: 0,
+                primary: Colors.pinkAccent,
+                shadowColor: Colors.transparent,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                ),
+                minimumSize: Size(MediaQuery.of(context).size.width - 40, 50),
+              ),
+              child: const Text(
+                'START',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
         ),
       ), /* Stack(
         alignment: Alignment.center,

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '/core/constants/route_names.dart';
+import '/core/enums/state_status.dart';
 import '/core/helpers/screen_utils.dart';
 import '/core/models/category.dart';
 import '/core/models/question_set.dart';
@@ -20,13 +21,17 @@ class _CategoriesScreenState extends State<CategoriesScreen> with ScreenUtils<Ca
   @override
   void initState() {
     super.initState();
-    _categoriesStateNotifier.loadCategories();
+    _loadCategories();
   }
 
   @override
   void dispose() {
     _categoriesStateNotifier.dispose();
     super.dispose();
+  }
+
+  void _loadCategories() {
+    _categoriesStateNotifier.loadCategories();
   }
 
   void _onQuestionSetTapped(String categoryId, String questionSetId) {
@@ -36,6 +41,29 @@ class _CategoriesScreenState extends State<CategoriesScreen> with ScreenUtils<Ca
         'categoryId': categoryId,
         'questionSetId': questionSetId,
       },
+    );
+  }
+
+  Widget get _reloadButton {
+    return ValueListenableBuilder<CategoriesState>(
+      valueListenable: _categoriesStateNotifier.state,
+      builder: (context, state, child) {
+        if (state.status == StateStatus.loaded) {
+          return child!;
+        }
+        return const Padding(
+          padding: EdgeInsets.all(16),
+          child: CupertinoActivityIndicator(),
+        );
+      },
+      child: IconButton(
+        padding: const EdgeInsets.all(16),
+        onPressed: _loadCategories,
+        icon: const Icon(
+          Icons.refresh,
+          color: Colors.pinkAccent,
+        ),
+      ),
     );
   }
 
@@ -56,6 +84,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> with ScreenUtils<Ca
         'Kategori',
         style: TextStyle(color: Colors.pinkAccent),
       ),
+      actions: [
+        _reloadButton,
+      ],
     );
   }
 
